@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Georgia", serif;
 }
 
 /* ----- Background ----- */
@@ -12,54 +12,101 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #1e3c72, #2a5298, #6a11cb, #2575fc);
-  background-size: 400% 400%;
-  animation: gradientBG 12s ease infinite;
-  color: white;
-}
-
-@keyframes gradientBG {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
+  background: radial-gradient(circle at top, #1b2735, #090a0f);
+  color: #fff;
 }
 
 /* ----- Container ----- */
 .container {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
   padding: 2rem;
   width: 90%;
   max-width: 420px;
   text-align: center;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  animation: fadeIn 1.5s ease;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
 }
 
 /* ----- Header ----- */
 header h1 {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: bold;
   margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
+  font-family: "Times New Roman", serif;
 }
 
 .logo {
-  width: 100px;
+  width: 80px;
   margin: 10px auto;
   display: block;
-  filter: drop-shadow(0 0 10px cyan);
+  filter: drop-shadow(0 0 8px #aaa);
 }
 
 /* ----- Track Title ----- */
 #track-title {
-  margin:
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #ddd;
+}
+
+/* ----- Audio Player ----- */
+audio {
+  width: 100%;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+
+/* ----- Controls ----- */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.controls button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.controls button:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* ----- Visualizer ----- */
+#visualizer {
+  width: 100%;
+  height: 60px;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+}
+
+.bar {
+  width: 4px;
+  background: #ffcc00;
+  border-radius: 3px;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.bar:nth-child(2) {animation-delay: 0.1s;}
+.bar:nth-child(3) {animation-delay: 0.2s;}
+.bar:nth-child(4) {animation-delay: 0.3s;}
+.bar:nth-child(5) {animation-delay: 0.4s;}
+.bar:nth-child(6) {animation-delay: 0.5s;}
+
+@keyframes bounce {
+  0%, 100% {height: 10px;}
+  50% {height: 50px;}
+}
