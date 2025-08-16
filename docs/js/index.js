@@ -1,43 +1,55 @@
-const playBtn = document.getElementById("play");
-const prevBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
 const audio = document.getElementById("audio");
-const trackTitle = document.getElementById("track-title");
+const canvas = document.getElementById("visualizer");
+const ctx = canvas.getContext("2d");
 
-let playlist = [
-  { title: "Sample Track 1", src: "media/sample.mp3" },
-  { title: "Sample Track 2", src: "media/sample2.mp3" }
-];
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
 
-let currentTrack = 0;
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const analyser = audioCtx.createAnalyser();
+const source = audioCtx.createMediaElementSource(audio);
+source.connect(analyser);
+analyser.connect(audioCtx.destination);
 
-function loadTrack(index) {
-  audio.src = playlist[index].src;
-  trackTitle.textContent = playlist[index].title;
-  audio.load();
+analyser.fftSize = 256;
+const bufferLength = analyser.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
+
+function draw() {
+  requestAnimationFrame(draw);
+  analyser.getByteFrequencyData(dataArray);
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const barWidth = (canvas.width / bufferLength) * 2.5;
+  let x = 0;
+
+  for (let i = 0; i < bufferLength; i++) {
+    const barHeight = dataArray[i] / 2;
+    ctx.fillStyle = `rgb(${barHeight + 100}, 50, 200)`;
+    ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+    x += barWidth + 1;
+  }
 }
 
-playBtn.addEventListener("click", () => {
+audio.onplay = () => {
+  audioCtx.resume();
+  draw();
+};
+
+// دکمه‌های کنترل موزیک
+function playPause() {
   if (audio.paused) {
     audio.play();
-    playBtn.innerHTML = `<i class="fas fa-pause"></i>`;
   } else {
     audio.pause();
-    playBtn.innerHTML = `<i class="fas fa-play"></i>`;
   }
-});
+}
 
-prevBtn.addEventListener("click", () => {
-  currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-  loadTrack(currentTrack);
-  audio.play();
-});
+function prevTrack() {
+  alert("Previous Track (می‌تونی بعدا لیست آهنگ‌ها اضافه کنی)");
+}
 
-nextBtn.addEventListener("click", () => {
-  currentTrack = (currentTrack + 1) % playlist.length;
-  loadTrack(currentTrack);
-  audio.play();
-});
-
-// load first track
-loadTrack(currentTrack);
+function nextTrack() {
+  alert("Next Track (می‌تونی بعدا لیست آهنگ‌ها اضافه کنی)");
+}
