@@ -1,35 +1,33 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MixRealm Player</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MixRealm</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div class="app">
+  <div class="container">
     <header>
-      <h1>🎶 MixRealm</h1>
+      <h1>🎵 MixRealm</h1>
+      <img src="https://cordova.apache.org/static/img/cordova_bot.png" alt="Logo" class="logo">
     </header>
 
     <main>
-      <div class="player-card">
-        <img src="img/logo.png" alt="Cover" class="cover-art" />
-        <h2 id="track-title">Track Title</h2>
-        <audio id="audio" controls>
-          <source src="media/sample.mp3" type="audio/mpeg">
-          مرورگر شما از پلیر صوتی پشتیبانی نمی‌کند.
-        </audio>
-        <div class="controls">
-          <button id="prev"><i class="fas fa-backward"></i></button>
-          <button id="play"><i class="fas fa-play"></i></button>
-          <button id="next"><i class="fas fa-forward"></i></button>
-        </div>
+      <h2 id="track-title">Track Title</h2>
+      <audio id="audio-player" controls>
+        <source id="audio-source" src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      <div class="controls">
+        <button id="prev">⏮️</button>
+        <button id="play">▶️</button>
+        <button id="next">⏭️</button>
       </div>
     </main>
   </div>
 
-  <script src="js/app.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
