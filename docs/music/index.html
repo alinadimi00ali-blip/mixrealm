@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎵 MixRealm Music Player</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1a0033, #4b0082);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px #a020f0;
+    }
+    .player {
+      background: rgba(20, 0, 40, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(160, 32, 240, 0.6);
+      padding: 20px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .controls {
+      margin-top: 15px;
+    }
+    button {
+      background: #6a0dad;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #a020f0;
+      box-shadow: 0 0 15px #a020f0;
+    }
+    .playlist {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .playlist li {
+      margin: 5px 0;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 8px;
+    }
+    .playlist li.active {
+      background: #6a0dad;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎶 MixRealm Player</h1>
+  <div class="player">
+    <audio id="audio" controls></audio>
+    <div class="controls">
+      <button onclick="prevTrack()">⏮ قبلی</button>
+      <button onclick="nextTrack()">⏭ بعدی</button>
+    </div>
+    <ul id="playlist" class="playlist"></ul>
+  </div>
+
+  <script>
+    const tracks = [
+      "tracks/4_5805174558591816903.mp3",
+      "tracks/Ehsan Daryadel - Sakhreh.mp3"
+    ];
+
+    const audio = document.getElementById("audio");
+    const playlist = document.getElementById("playlist");
+    let current = 0;
+
+    function loadPlaylist() {
+      tracks.forEach((track, index) => {
+        const li = document.createElement("li");
+        li.textContent = track.split("/").pop();
+        li.onclick = () => playTrack(index);
+        playlist.appendChild(li);
+      });
+      updateActive();
+      playTrack(0);
+    }
+
+    function playTrack(index) {
+      current = index;
+      audio.src = tracks[current];
+      audio.play();
+      updateActive();
+    }
+
+    function nextTrack() {
+      current = (current + 1) % tracks.length;
+      playTrack(current);
+    }
+
+    function prevTrack() {
+      current = (current - 1 + tracks.length) % tracks.length;
+      playTrack(current);
+    }
+
+    function updateActive() {
+      [...playlist.children].forEach((li, index) => {
+        li.classList.toggle("active", index === current);
+      });
+    }
+
+    audio.addEventListener("ended", nextTrack);
+    window.onload = loadPlaylist;
+  </script>
+</body>
+</html>
