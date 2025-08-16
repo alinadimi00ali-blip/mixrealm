@@ -1,58 +1,65 @@
-body {
+/* ----- Reset ----- */
+* {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(135deg, #1e0037, #4b0082);
-  color: #fff;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ----- Background ----- */
+body {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.player-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-  backdrop-filter: blur(10px);
-  animation: fadeIn 1s ease;
-}
-
-.cover-art {
-  width: 200px;
-  border-radius: 15px;
-  margin-bottom: 20px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.6);
-}
-
-.controls {
-  margin-top: 15px;
-}
-
-.controls button {
-  background: #6a0dad;
-  border: none;
+  background: linear-gradient(135deg, #1e3c72, #2a5298, #6a11cb, #2575fc);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
   color: white;
-  padding: 12px 18px;
-  margin: 0 8px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 18px;
-  transition: all 0.3s ease;
 }
 
-.controls button:hover {
-  background: #a020f0;
-  transform: scale(1.1);
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* ----- Container ----- */
+.container {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  animation: fadeIn 1.5s ease;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
 }
+
+/* ----- Header ----- */
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.logo {
+  width: 100px;
+  margin: 10px auto;
+  display: block;
+  filter: drop-shadow(0 0 10px cyan);
+}
+
+/* ----- Track Title ----- */
+#track-title {
+  margin:
