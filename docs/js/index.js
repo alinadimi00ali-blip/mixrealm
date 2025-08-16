@@ -1,29 +1,43 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+const playBtn = document.getElementById("play");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+const audio = document.getElementById("audio");
+const trackTitle = document.getElementById("track-title");
 
-// Wait for the deviceready event before using any of Cordova's device APIs.
-// See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
-document.addEventListener('deviceready', onDeviceReady, false);
+let playlist = [
+  { title: "Sample Track 1", src: "media/sample.mp3" },
+  { title: "Sample Track 2", src: "media/sample2.mp3" }
+];
 
-function onDeviceReady() {
-    // Cordova is now initialized. Have fun!
+let currentTrack = 0;
 
-    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
-    document.getElementById('deviceready').classList.add('ready');
+function loadTrack(index) {
+  audio.src = playlist[index].src;
+  trackTitle.textContent = playlist[index].title;
+  audio.load();
 }
+
+playBtn.addEventListener("click", () => {
+  if (audio.paused) {
+    audio.play();
+    playBtn.innerHTML = `<i class="fas fa-pause"></i>`;
+  } else {
+    audio.pause();
+    playBtn.innerHTML = `<i class="fas fa-play"></i>`;
+  }
+});
+
+prevBtn.addEventListener("click", () => {
+  currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+  loadTrack(currentTrack);
+  audio.play();
+});
+
+nextBtn.addEventListener("click", () => {
+  currentTrack = (currentTrack + 1) % playlist.length;
+  loadTrack(currentTrack);
+  audio.play();
+});
+
+// load first track
+loadTrack(currentTrack);
