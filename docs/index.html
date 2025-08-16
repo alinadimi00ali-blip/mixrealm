@@ -1,33 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MixRealm</title>
-  <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1>🎵 MixRealm</h1>
-      <img src="https://cordova.apache.org/static/img/cordova_bot.png" alt="Logo" class="logo">
-    </header>
+<div class="container">
+  <header>
+    <h1>🎶 MixRealm</h1>
+    <img src="logo.png" alt="Logo" class="logo">
+  </header>
 
-    <main>
-      <h2 id="track-title">Track Title</h2>
-      <audio id="audio-player" controls>
-        <source id="audio-source" src="" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
+  <h2 id="track-title">Track Title</h2>
+  <audio id="audio" controls>
+    <source src="tracks/your-music.mp3" type="audio/mp3">
+  </audio>
 
-      <div class="controls">
-        <button id="prev">⏮️</button>
-        <button id="play">▶️</button>
-        <button id="next">⏭️</button>
-      </div>
-    </main>
+  <div class="controls">
+    <button onclick="prevTrack()">⏮</button>
+    <button onclick="playPause()">▶️</button>
+    <button onclick="nextTrack()">⏭</button>
   </div>
 
-  <script src="./script.js"></script>
-</body>
-</html>
+  <!-- ویژوالایزر -->
+  <div id="visualizer">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+</div>
