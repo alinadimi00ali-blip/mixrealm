@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>پنل ادمین - MixRealm</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="admin">
+  <header class="topbar">
+    <div class="brand">🎧 MixRealm — Admin</div>
+    <nav>
+      <a href="index.html" class="btn">خانه</a>
+      <button id="btnSignOut" class="btn danger">خروج</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <h2>آپلود آهنگ جدید</h2>
+      <form id="uploadForm">
+        <label>نام آهنگ</label>
+        <input type="text" id="songName" placeholder="مثلاً: Be Yadam Bash" required>
+
+        <label>خواننده</label>
+        <input type="text" id="artistName" placeholder="مثلاً: X Band" required>
+
+        <label>ژانر (اختیاری)</label>
+        <input type="text" id="genre" placeholder="Hip-Hop, Pop, Classic">
+
+        <label>فایل صوتی</label>
+        <input type="file" id="audioFile" accept="audio/*" required>
+
+        <label>کاور</label>
+        <input type="file" id="coverFile" accept="image/*" required>
+
+        <button type="submit" class="btn primary">آپلود 🚀</button>
+
+        <div class="progress" id="progress" hidden>
+          <div class="bar" id="bar"></div>
+        </div>
+        <p id="status" class="status"></p>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>لیست آهنگ‌ها</h2>
+      <ul id="songsList" class="list"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">© MixRealm</footer>
+
+  <!-- لاجیک ادمین -->
+  <script type="module" src="./admin.js"></script>
+</body>
+</html>
